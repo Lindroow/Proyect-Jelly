@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float jumpForce;
     [SerializeField] float turnSmoothTime = 0.1f;
+    Vector3 velocity;
+
     [SerializeField] Transform camera;
 
 
@@ -32,25 +34,39 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Jump();
+        Movement();
+    }
+
+    public void Jump()
+    {
+        // Aplicar gravedad
+        if (characterController.isGrounded)
+        {
+            velocity.y = -1;
+
+            if (Input.GetButtonDown("Jump"))
+            {
+                velocity.y = jumpForce;
+            }
+        }
+        else
+        {
+            velocity.y -= gravity * -2 * Time.deltaTime;
+        }
+
+        characterController.Move(velocity * Time.deltaTime);
+    }
+
+    public void Movement()
+    {
         float inputX = Input.GetAxisRaw("Horizontal");
         float inputZ = Input.GetAxisRaw("Vertical");
 
         //Movement
-        Vector3 movement = new Vector3(inputX,0f, inputZ).normalized;
+        Vector3 movement = new Vector3(inputX, 0f, inputZ).normalized;
 
-        // Aplicar gravedad
-        if (characterController.isGrounded)
-        {
-            movement.y -= gravity * Time.deltaTime;
-        }
-
-        // Salto
-        if (characterController.isGrounded && Input.GetButtonDown("Jump"))
-        {
-            movement.y = jumpForce;
-        }
-
-        if (movement.magnitude > 0.1f )
+        if (movement.magnitude > 0.1f)
         {
             //Rotation
             float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + camera.eulerAngles.y;
@@ -63,9 +79,6 @@ public class PlayerController : MonoBehaviour
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * speed * Time.deltaTime);
         }
-
-
-        
     }
 
     private void OnTriggerEnter(Collider other)

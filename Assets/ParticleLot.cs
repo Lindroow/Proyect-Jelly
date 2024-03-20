@@ -32,18 +32,22 @@ public class ParticleLot : MonoBehaviour
             case ParticleType.Fuego:
                 particleSystem.GetComponent<ParticleSystemRenderer>().mesh = particleMesh[0];
                 particleSystem.GetComponent<ParticleSystemRenderer>().material = particleMaterial[0];
+                pointLight.color = Color.red;
                 break;
             case ParticleType.Agua:
                 particleSystem.GetComponent<ParticleSystemRenderer>().mesh = particleMesh[1];
                 particleSystem.GetComponent<ParticleSystemRenderer>().material = particleMaterial[1];
+                pointLight.color = Color.blue;
                 break;
             case ParticleType.Aire:
                 particleSystem.GetComponent<ParticleSystemRenderer>().mesh = particleMesh[2];
                 particleSystem.GetComponent<ParticleSystemRenderer>().material = particleMaterial[2];
+                pointLight.color = Color.yellow;
                 break;
             case ParticleType.Planta:
                 particleSystem.GetComponent<ParticleSystemRenderer>().mesh = particleMesh[3];
                 particleSystem.GetComponent<ParticleSystemRenderer>().material = particleMaterial[3];
+                pointLight.color = Color.green;
                 break;
         }
     }
