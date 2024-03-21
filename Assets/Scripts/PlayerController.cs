@@ -10,15 +10,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float jumpForce;
     [SerializeField] float turnSmoothTime = 0.1f;
+    [SerializeField] bool doubleJump =false;
     Vector3 velocity;
 
     [SerializeField] Transform camera;
 
+    [Header("Habilidades")]
+    [SerializeField] bool airHability;
+    [SerializeField] bool fireHability;
+    [SerializeField] bool waterHability;
+    [SerializeField] bool plantHability;
 
     private float turnSmoothVelocity;
 
     private CharacterController characterController;
     [SerializeField] ParticleSystem[] particleSystem;
+    [SerializeField] particlesControl particlesControl;
 
     private void Awake()
     {
@@ -36,6 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         Movement();
+        
+
     }
 
     public void Jump()
@@ -49,10 +58,22 @@ public class PlayerController : MonoBehaviour
             {
                 velocity.y = jumpForce;
             }
+            if (airHability == true)
+            {
+                doubleJump = true;
+            }
         }
         else
         {
             velocity.y -= gravity * -2 * Time.deltaTime;
+
+            //Doble salto si tiene determinada cantidad de partículas de aire
+            if (Input.GetButtonDown("Jump") && airHability == true)
+            {
+                velocity.y = jumpForce;
+                particlesControl.StartCoroutine("airHability");
+                doubleJump = false;
+            }
         }
 
         characterController.Move(velocity * Time.deltaTime);
@@ -83,8 +104,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Al colisionar se setea en el personaje el tipo de particula que juntó y la cantidad
         if (other.CompareTag("ParticlesLot"))
         {
+            
+
             switch (other.GetComponent<ParticleLot>().setType())
             {
                 case "Fuego":
@@ -100,7 +124,10 @@ public class PlayerController : MonoBehaviour
                     particleSystem[3].maxParticles += other.GetComponent<ParticleLot>().SetParticles();
                     break;
             }
-             
+            //Cada tipo de particula se setea con un número y el total de particulas
+            particlesControl.numParticlesSet();
+            particlesControl.ActiveHability(ref fireHability,ref waterHability,ref airHability,ref plantHability);
         }
+        
     }
 }

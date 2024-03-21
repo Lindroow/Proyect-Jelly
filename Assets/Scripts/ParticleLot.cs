@@ -52,17 +52,10 @@ public class ParticleLot : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (particleSystem.maxParticles == 0)
-        {
-            StartCoroutine("Destroy");
-        }
-    }
-
     public int SetParticles()
     {
         particleSystem.maxParticles = 0;
+        StartCoroutine("Destroy");
         return numParticles;
         
     }
