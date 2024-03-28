@@ -52,23 +52,25 @@ public class PlayerController : MonoBehaviour
         // Aplicar gravedad
         if (characterController.isGrounded)
         {
-            velocity.y = -1;
+            velocity.y = -2;
 
             if (Input.GetButtonDown("Jump"))
             {
                 velocity.y = jumpForce;
+                if (airHability == true)
+                {
+                    doubleJump = true;
+                }
             }
-            if (airHability == true)
-            {
-                doubleJump = true;
-            }
+            
         }
         else
         {
-            velocity.y -= gravity * -2 * Time.deltaTime;
+            velocity.y -= gravity * -3 * Time.deltaTime;
+
 
             //Doble salto si tiene determinada cantidad de partículas de aire
-            if (Input.GetButtonDown("Jump") && airHability == true)
+            if (Input.GetButtonDown("Jump") && airHability == true && doubleJump == true)
             {
                 velocity.y = jumpForce;
                 particlesControl.StartCoroutine("airHability");
@@ -124,6 +126,9 @@ public class PlayerController : MonoBehaviour
                     particleSystem[3].maxParticles += other.GetComponent<ParticleLot>().SetParticles();
                     break;
             }
+            //Agranda el tamaño el focus cuanto máyor sea la cantidad de particulas;
+            particlesControl.FocusSize();
+
             //Cada tipo de particula se setea con un número y el total de particulas
             particlesControl.numParticlesSet();
             particlesControl.ActiveHability(ref fireHability,ref waterHability,ref airHability,ref plantHability);

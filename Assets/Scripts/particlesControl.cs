@@ -10,18 +10,7 @@ public class particlesControl : MonoBehaviour
     [SerializeField] Material[] materials;
 
     [SerializeField] int numFuego, numAgua, numAire, numPlanta, numTotalParticles;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
     public void numParticlesSet()
     {
@@ -60,13 +49,26 @@ public class particlesControl : MonoBehaviour
 
        public IEnumerator airHability()
     {
+        forceField[2].gravityFocus = 0.03f;
+        forceField[2].startRange = 0f;
+        //forceField[2].directionY = 50f;
 
         materials[2].DOColor(Color.yellow * 5, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(.5f);
+
+        forceField[2].startRange = 1f;
+        forceField[2].gravityFocus = 0.3f;
+        //forceField[2].directionY = 0f;
         materials[2].DOColor(Color.black * 0, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(.5f);
         StopAllCoroutines();
     }
 
-    
+    public void FocusSize()
+    {
+        for (int i = 0; i < forceField.Length; i++) 
+        {
+            forceField[i].gravityFocus = (numTotalParticles + i * 80) * 0.0003f;
+        }
+    }
 }
