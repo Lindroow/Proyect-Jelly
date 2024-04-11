@@ -57,11 +57,46 @@ public class particlesControl : MonoBehaviour
         yield return new WaitForSeconds(.5f);
 
         forceField[2].startRange = 1f;
-        forceField[2].gravityFocus = 0.3f;
+        FocusSize();
         //forceField[2].directionY = 0f;
         materials[2].DOColor(Color.black * 0, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(.5f);
         StopAllCoroutines();
+    }
+
+    public IEnumerator FireHability()
+    {
+        forceField[0].gravityFocus = 0.03f;
+        forceField[0].startRange = 0f;
+        //forceField[2].directionY = 50f;
+
+        materials[0].DOColor(Color.red * 5, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
+        yield return new WaitForSeconds(.5f);
+
+        forceField[0].startRange = 1f;
+        FocusSize();
+        //forceField[2].directionY = 0f;
+        materials[0].DOColor(Color.black * 0, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
+        yield return new WaitForSeconds(.5f);
+        StopAllCoroutines();
+    }
+
+    public void WaterHabilityActive()
+    {
+            forceField[1].gravityFocus = 0f;
+            forceField[1].startRange = 0f;
+            forceField[1].directionY = -50f;
+
+            materials[1].DOColor(Color.blue * 5, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
+        
+    }
+
+    public void WaterHabilityInactive()
+    {
+        forceField[1].startRange = 1f;
+        FocusSize();
+        forceField[1].directionY = 0f;
+        materials[1].DOColor(Color.black * 0, "_EmissionColor", .5f).SetEase(Ease.InOutSine);
     }
 
     public void FocusSize()

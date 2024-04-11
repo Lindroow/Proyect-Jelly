@@ -14,6 +14,7 @@ public class ParticleLot : MonoBehaviour
     [SerializeField] ParticleType particleType;
 
     private ParticleSystem particleSystem;
+    [SerializeField] ParticleSystemForceField forceField;
     [SerializeField] Light pointLight;
 
     private void Awake()
@@ -67,9 +68,10 @@ public class ParticleLot : MonoBehaviour
 
     IEnumerator Destroy()
     {
-            particleSystem.startLifetime = 0.5f;
+        gameObject.GetComponent<SphereCollider>().enabled = false;
             pointLight.DOIntensity(0, 0.5f);
-            yield return new WaitForSeconds(5f);
+        forceField.enabled = false;
+            yield return new WaitForSeconds(11f);
             gameObject.SetActive(false);
         
     }

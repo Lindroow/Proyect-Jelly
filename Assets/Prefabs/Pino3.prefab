@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6289328186058735849}
   - component: {fileID: 1850179287193584380}
   - component: {fileID: 6439814098155628103}
+  - component: {fileID: -766272596454181394}
   m_Layer: 0
   m_Name: Pino3
   m_TagString: Untagged
@@ -111,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 3972469777492497493}
   serializedVersion: 2
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
-  m_LocalPosition: {x: -8.751045, y: 1.2935567, z: -22.05044}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -187,7 +188,34 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2
   m_Height: 11.2
   m_Direction: 1
   m_Center: {x: -0.0049813986, y: 0.83, z: 0.03302312}
+--- !u!205 &-766272596454181394
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3972469777492497493}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.004981518, y: 2.175032, z: 0.03302312}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.10482797
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1850179287193584380}
+  - screenRelativeHeight: 0.052413985
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1850179287193584380}
+  - screenRelativeHeight: 0.017471328
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 1850179287193584380}
+  m_Enabled: 1

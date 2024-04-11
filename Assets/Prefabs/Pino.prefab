@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5197301008895803374}
   - component: {fileID: 4348716373730251798}
   - component: {fileID: 1287061182851673737}
+  - component: {fileID: 5008569283710861760}
   m_Layer: 0
   m_Name: Pino
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7795546054338984563}
   serializedVersion: 2
   m_LocalRotation: {x: -6.123234e-17, y: 1, z: 6.123234e-17, w: -3.7493994e-33}
-  m_LocalPosition: {x: -8.751045, y: 0.5500002, z: -15.05044}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -107,3 +108,30 @@ CapsuleCollider:
   m_Height: 11.2
   m_Direction: 1
   m_Center: {x: -0.0049813986, y: 0.83, z: 0.03302312}
+--- !u!205 &5008569283710861760
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795546054338984563}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: -0.004981518, y: 2.175032, z: 0.03302312}
+  m_Size: 1
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.10482797
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4348716373730251798}
+  - screenRelativeHeight: 0.052413985
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4348716373730251798}
+  - screenRelativeHeight: 0.017471328
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4348716373730251798}
+  m_Enabled: 1
